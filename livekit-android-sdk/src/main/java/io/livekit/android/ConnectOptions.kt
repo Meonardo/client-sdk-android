@@ -18,7 +18,7 @@ package io.livekit.android
 
 import io.livekit.android.room.ProtocolVersion
 import io.livekit.android.room.Room
-import livekit.org.webrtc.PeerConnection
+import org.webrtc.PeerConnection
 
 /**
  * Options for using with [Room.connect].

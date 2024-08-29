@@ -21,7 +21,7 @@ import io.livekit.android.util.flow
 import io.livekit.android.webrtc.isConnected
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.takeWhile
-import livekit.org.webrtc.PeerConnection.PeerConnectionState
+import org.webrtc.PeerConnection.PeerConnectionState
 
 internal interface PeerConnectionStateObservable {
     @FlowObservable

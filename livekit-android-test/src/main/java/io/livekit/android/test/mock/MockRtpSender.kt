@@ -16,9 +16,9 @@
 
 package io.livekit.android.test.mock
 
-import livekit.org.webrtc.MockRtpParameters
-import livekit.org.webrtc.RtpParameters
-import livekit.org.webrtc.RtpSender
+import org.webrtc.MockRtpParameters
+import org.webrtc.RtpParameters
+import org.webrtc.RtpSender
 import org.mockito.Mockito
 import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever

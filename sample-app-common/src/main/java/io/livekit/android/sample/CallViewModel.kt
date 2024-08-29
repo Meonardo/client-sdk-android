@@ -42,10 +42,13 @@ import io.livekit.android.room.Room
 import io.livekit.android.room.participant.LocalParticipant
 import io.livekit.android.room.participant.Participant
 import io.livekit.android.room.participant.RemoteParticipant
+import io.livekit.android.room.participant.VideoTrackPublishDefaults
 import io.livekit.android.room.track.CameraPosition
 import io.livekit.android.room.track.LocalScreencastVideoTrack
 import io.livekit.android.room.track.LocalVideoTrack
 import io.livekit.android.room.track.Track
+import io.livekit.android.room.track.VideoCodec
+import io.livekit.android.room.track.VideoEncoding
 import io.livekit.android.room.track.video.CameraCapturerUtils
 import io.livekit.android.sample.model.StressTest
 import io.livekit.android.sample.service.ForegroundService
@@ -61,7 +64,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import livekit.org.webrtc.CameraXHelper
+import org.webrtc.CameraXHelper
 
 @OptIn(ExperimentalCamera2Interop::class)
 class CallViewModel(
@@ -84,10 +87,19 @@ class CallViewModel(
     }
 
     private fun getRoomOptions(): RoomOptions {
+        val videoTrackOptions = VideoTrackPublishDefaults(
+            videoEncoding = VideoEncoding(
+                maxBitrate = 4000000,
+                maxFps = 30,
+            ),
+            simulcast = false,
+            videoCodec = VideoCodec.H264.codecName,
+        )
         return RoomOptions(
             adaptiveStream = true,
             dynacast = true,
             e2eeOptions = getE2EEOptions(),
+            videoTrackPublishDefaults = videoTrackOptions,
         )
     }
 

@@ -17,7 +17,7 @@
 package io.livekit.android.webrtc
 
 import livekit.LivekitRtc
-import livekit.org.webrtc.SessionDescription
+import org.webrtc.SessionDescription
 
 internal fun SessionDescription.toProtoSessionDescription(): LivekitRtc.SessionDescription {
     val sdBuilder = LivekitRtc.SessionDescription.newBuilder()

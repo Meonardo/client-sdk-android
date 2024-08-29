@@ -30,7 +30,7 @@ import io.livekit.android.util.toOkioByteString
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import livekit.LivekitRtc
-import livekit.org.webrtc.PeerConnection
+import org.webrtc.PeerConnection
 import okhttp3.Protocol
 import okhttp3.Request
 import okhttp3.Response

@@ -26,7 +26,7 @@ import io.livekit.android.test.mock.MockPeerConnection
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import livekit.LivekitModels.DataPacket
 import livekit.LivekitModels.UserPacket
-import livekit.org.webrtc.DataChannel
+import org.webrtc.DataChannel
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.nio.ByteBuffer

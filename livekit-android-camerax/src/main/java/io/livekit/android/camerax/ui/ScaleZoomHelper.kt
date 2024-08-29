@@ -28,7 +28,7 @@ import io.livekit.android.camerax.ui.ScaleZoomHelper.Companion.createGestureDete
 import io.livekit.android.room.track.LocalVideoTrack
 import io.livekit.android.util.LKLog
 import kotlinx.coroutines.flow.StateFlow
-import livekit.org.webrtc.getCameraX
+import org.webrtc.getCameraX
 
 /**
  * A helper class that handles zoom for a CameraX video capturer.

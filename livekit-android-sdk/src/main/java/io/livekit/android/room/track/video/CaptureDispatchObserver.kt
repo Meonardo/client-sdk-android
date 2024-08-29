@@ -16,9 +16,9 @@
 
 package io.livekit.android.room.track.video
 
-import livekit.org.webrtc.CapturerObserver
-import livekit.org.webrtc.VideoFrame
-import livekit.org.webrtc.VideoSink
+import org.webrtc.CapturerObserver
+import org.webrtc.VideoFrame
+import org.webrtc.VideoSink
 
 /**
  * @suppress

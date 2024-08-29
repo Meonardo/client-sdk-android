@@ -17,7 +17,8 @@
 package io.livekit.android.room.track.video
 
 import android.hardware.camera2.CameraManager
-import livekit.org.webrtc.*
+import org.webrtc.Camera1Helper
+import org.webrtc.*
 
 /**
  * A [VideoCapturer] that declares that it can determine the actual size of the capture format it will use.

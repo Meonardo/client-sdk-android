@@ -34,10 +34,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import livekit.LivekitModels
 import livekit.LivekitRtc
-import livekit.org.webrtc.AudioTrack
-import livekit.org.webrtc.MediaStreamTrack
-import livekit.org.webrtc.RtpReceiver
-import livekit.org.webrtc.VideoTrack
+import org.webrtc.AudioTrack
+import org.webrtc.MediaStreamTrack
+import org.webrtc.RtpReceiver
+import org.webrtc.VideoTrack
 
 /**
  * A representation of a remote participant.

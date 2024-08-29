@@ -16,6 +16,6 @@
 
 package io.livekit.android.test.mock
 
-import livekit.org.webrtc.VideoSource
+import org.webrtc.VideoSource
 
 class MockVideoSource(nativeSource: Long = 100) : VideoSource(nativeSource)

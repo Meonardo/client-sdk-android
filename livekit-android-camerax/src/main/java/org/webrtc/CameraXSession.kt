@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package livekit.org.webrtc
+package org.webrtc
 
 import android.content.Context
 import android.hardware.camera2.CameraCharacteristics
@@ -38,7 +38,7 @@ import androidx.camera.core.Preview.SurfaceProvider
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
-import livekit.org.webrtc.CameraEnumerationAndroid.CaptureFormat
+import org.webrtc.CameraEnumerationAndroid.CaptureFormat
 import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
 

@@ -143,7 +143,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation libs.coroutines.lib
     implementation libs.kotlinx.serialization.json
-    api libs.webrtc
+    api files('../libs/libwebrtc.aar')
+//    api libs.webrtc
     api libs.okhttp.lib
     implementation libs.okhttp.coroutines
     api libs.audioswitch

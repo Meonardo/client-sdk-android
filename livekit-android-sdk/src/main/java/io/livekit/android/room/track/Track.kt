@@ -24,9 +24,9 @@ import io.livekit.android.webrtc.getStats
 import io.livekit.android.webrtc.peerconnection.executeBlockingOnRTCThread
 import livekit.LivekitModels
 import livekit.LivekitRtc
-import livekit.org.webrtc.MediaStreamTrack
-import livekit.org.webrtc.RTCStatsCollectorCallback
-import livekit.org.webrtc.RTCStatsReport
+import org.webrtc.MediaStreamTrack
+import org.webrtc.RTCStatsCollectorCallback
+import org.webrtc.RTCStatsReport
 
 abstract class Track(
     name: String,

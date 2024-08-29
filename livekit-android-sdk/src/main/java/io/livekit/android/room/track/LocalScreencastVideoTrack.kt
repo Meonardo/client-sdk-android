@@ -28,7 +28,7 @@ import dagger.assisted.AssistedInject
 import io.livekit.android.room.DefaultsManager
 import io.livekit.android.room.track.screencapture.ScreenCaptureConnection
 import io.livekit.android.room.track.screencapture.ScreenCaptureService
-import livekit.org.webrtc.*
+import org.webrtc.*
 import java.util.*
 
 class LocalScreencastVideoTrack
@@ -38,7 +38,7 @@ constructor(
     @Assisted source: VideoSource,
     @Assisted name: String,
     @Assisted options: LocalVideoTrackOptions,
-    @Assisted rtcTrack: livekit.org.webrtc.VideoTrack,
+    @Assisted rtcTrack: org.webrtc.VideoTrack,
     @Assisted mediaProjectionCallback: MediaProjectionCallback,
     peerConnectionFactory: PeerConnectionFactory,
     context: Context,
@@ -104,7 +104,7 @@ constructor(
             source: VideoSource,
             name: String,
             options: LocalVideoTrackOptions,
-            rtcTrack: livekit.org.webrtc.VideoTrack,
+            rtcTrack: org.webrtc.VideoTrack,
             mediaProjectionCallback: MediaProjectionCallback,
         ): LocalScreencastVideoTrack
     }

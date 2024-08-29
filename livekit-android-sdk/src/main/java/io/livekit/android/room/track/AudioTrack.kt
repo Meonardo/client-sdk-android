@@ -16,7 +16,7 @@
 
 package io.livekit.android.room.track
 
-import livekit.org.webrtc.AudioTrack
+import org.webrtc.AudioTrack
 
 /**
  * A class representing an audio track.

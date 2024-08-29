@@ -34,7 +34,7 @@ import io.livekit.android.util.flow
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import livekit.org.webrtc.EglBase
+import org.webrtc.EglBase
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class CallViewModel(

@@ -28,14 +28,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import livekit.org.webrtc.RtpReceiver
-import livekit.org.webrtc.VideoSink
+import org.webrtc.RtpReceiver
+import org.webrtc.VideoSink
 import javax.inject.Named
 import kotlin.math.max
 
 class RemoteVideoTrack(
     name: String,
-    rtcTrack: livekit.org.webrtc.VideoTrack,
+    rtcTrack: org.webrtc.VideoTrack,
     val autoManageVideo: Boolean = false,
     @Named(InjectionNames.DISPATCHER_DEFAULT)
     private val dispatcher: CoroutineDispatcher,

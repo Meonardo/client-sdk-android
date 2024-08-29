@@ -48,9 +48,9 @@ import livekit.LivekitModels.AudioTrackFeature
 import livekit.LivekitRtc
 import livekit.LivekitRtc.JoinResponse
 import livekit.LivekitRtc.ReconnectResponse
-import livekit.org.webrtc.IceCandidate
-import livekit.org.webrtc.PeerConnection
-import livekit.org.webrtc.SessionDescription
+import org.webrtc.IceCandidate
+import org.webrtc.PeerConnection
+import org.webrtc.SessionDescription
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response

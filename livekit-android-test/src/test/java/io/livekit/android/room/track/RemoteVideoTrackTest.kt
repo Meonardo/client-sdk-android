@@ -23,8 +23,8 @@ import io.livekit.android.test.events.EventCollector
 import io.livekit.android.test.mock.MockRtpReceiver
 import io.livekit.android.test.mock.MockVideoStreamTrack
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import livekit.org.webrtc.VideoFrame
-import livekit.org.webrtc.VideoSink
+import org.webrtc.VideoFrame
+import org.webrtc.VideoSink
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

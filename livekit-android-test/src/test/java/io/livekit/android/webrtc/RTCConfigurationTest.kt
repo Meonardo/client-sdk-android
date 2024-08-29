@@ -17,7 +17,7 @@
 package io.livekit.android.webrtc
 
 import io.livekit.android.test.BaseTest
-import livekit.org.webrtc.PeerConnection.RTCConfiguration
+import org.webrtc.PeerConnection.RTCConfiguration
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

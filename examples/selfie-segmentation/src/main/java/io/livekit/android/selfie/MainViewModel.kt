@@ -25,7 +25,7 @@ import io.livekit.android.room.track.CameraPosition
 import io.livekit.android.room.track.LocalVideoTrack
 import io.livekit.android.room.track.LocalVideoTrackOptions
 import kotlinx.coroutines.Dispatchers
-import livekit.org.webrtc.EglBase
+import org.webrtc.EglBase
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 

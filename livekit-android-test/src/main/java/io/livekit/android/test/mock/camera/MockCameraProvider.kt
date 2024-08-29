@@ -20,12 +20,12 @@ import android.content.Context
 import io.livekit.android.room.track.LocalVideoTrackOptions
 import io.livekit.android.room.track.video.CameraCapturerUtils
 import io.livekit.android.room.track.video.CameraEventsDispatchHandler
-import livekit.org.webrtc.CameraEnumerationAndroid
-import livekit.org.webrtc.CameraEnumerator
-import livekit.org.webrtc.CameraVideoCapturer
-import livekit.org.webrtc.CapturerObserver
-import livekit.org.webrtc.SurfaceTextureHelper
-import livekit.org.webrtc.VideoCapturer
+import org.webrtc.CameraEnumerationAndroid
+import org.webrtc.CameraEnumerator
+import org.webrtc.CameraVideoCapturer
+import org.webrtc.CapturerObserver
+import org.webrtc.SurfaceTextureHelper
+import org.webrtc.VideoCapturer
 
 class MockCameraProvider : CameraCapturerUtils.CameraProvider {
 

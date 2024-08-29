@@ -21,8 +21,8 @@ import io.livekit.android.audio.AudioProcessorOptions
 import io.livekit.android.audio.AuthedAudioProcessingController
 import io.livekit.android.audio.AuthedAudioProcessorInterface
 import io.livekit.android.util.flowDelegate
-import livekit.org.webrtc.AudioProcessingFactory
-import livekit.org.webrtc.ExternalAudioProcessingFactory
+import org.webrtc.AudioProcessingFactory
+import org.webrtc.ExternalAudioProcessingFactory
 import java.nio.ByteBuffer
 
 /**

@@ -16,16 +16,31 @@
 
 package io.livekit.android.sample
 
+import android.Manifest
 import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.media.AudioAttributes
+import android.media.AudioFormat
+import android.media.AudioManager
+import android.media.AudioPlaybackCaptureConfiguration
+import android.media.AudioRecord
+import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.os.Handler
 import android.os.Parcelable
+import android.util.Log
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xwray.groupie.GroupieAdapter
@@ -37,8 +52,15 @@ import io.livekit.android.sample.dialog.showSelectAudioDeviceDialog
 import io.livekit.android.sample.model.StressTest
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.parcelize.Parcelize
+import java.io.File
 
 class CallActivity : AppCompatActivity() {
+
+    private val tag = "CallActivity"
+
+    private val mediaProjectionManager: MediaProjectionManager by lazy {
+        getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+    }
 
     private val viewModel: CallViewModel by viewModelByFactory {
         val args = intent.getParcelableExtra<BundleArgs>(KEY_ARGS)
@@ -63,6 +85,14 @@ class CallActivity : AppCompatActivity() {
             if (resultCode != Activity.RESULT_OK || data == null) {
                 return@registerForActivityResult
             }
+
+            Handler().postDelayed({
+                val mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, data)
+                if (mediaProjection != null) {
+                    requestSystemAudio(mediaProjection)
+                }
+            }, 1000)
+
             viewModel.startScreenCapture(data)
         }
 
@@ -209,9 +239,58 @@ class CallActivity : AppCompatActivity() {
     }
 
     private fun requestMediaProjection() {
-        val mediaProjectionManager =
-            getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
-        screenCaptureIntentLauncher.launch(mediaProjectionManager.createScreenCaptureIntent())
+        val intent = mediaProjectionManager.createScreenCaptureIntent()
+        screenCaptureIntentLauncher.launch(intent)
+    }
+
+    private fun requestSystemAudio(projection: MediaProjection) {
+        val config = AudioPlaybackCaptureConfiguration.Builder(projection)
+            .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
+            .addMatchingUsage(AudioAttributes.USAGE_GAME)
+            .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
+            .build()
+
+        val sampleRate = 32000
+        val bufferSize = AudioRecord.getMinBufferSize(sampleRate,
+            AudioFormat.CHANNEL_IN_STEREO,
+            AudioFormat.ENCODING_PCM_16BIT)
+
+        // check if we have permission to record audio
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            return
+        }
+
+        // create audio record instance
+        val audioRecord = AudioRecord.Builder()
+            .setAudioFormat(AudioFormat.Builder()
+                .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+                .setSampleRate(sampleRate)
+                .setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
+                .build())
+            .setAudioPlaybackCaptureConfig(config)
+            .setBufferSizeInBytes(bufferSize)
+            .build()
+
+        // start recording
+        audioRecord.startRecording()
+
+        // start a thread to read audio data & save to sdcard/Download
+        val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+            "audio.pcm")
+        if (file.exists()) {
+            file.delete()
+            file.createNewFile()
+        }
+        Thread {
+            while (true) {
+                val buffer = ByteArray(bufferSize)
+                audioRecord.read(buffer, 0, bufferSize)
+
+                // save to file
+                file.appendBytes(buffer)
+            }
+        }.start()
     }
 
     override fun onDestroy() {

@@ -17,9 +17,9 @@
 package io.livekit.android.videoencodedecode.test
 
 import androidx.test.platform.app.InstrumentationRegistry
-import livekit.org.webrtc.DefaultVideoEncoderFactory
-import livekit.org.webrtc.EglBase
-import livekit.org.webrtc.PeerConnectionFactory
+import org.webrtc.DefaultVideoEncoderFactory
+import org.webrtc.EglBase
+import org.webrtc.PeerConnectionFactory
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

@@ -8,7 +8,7 @@ ext {
     androidSdk = [
         compileVersion: 34,
         targetVersion : 34,
-        minVersion    : 21,
+        minVersion    : 29,
     ]
     generated = [
         protoSrc: "$projectDir/protocol/protobufs",

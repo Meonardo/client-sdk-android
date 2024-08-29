@@ -37,10 +37,10 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import livekit.LivekitModels.AudioTrackFeature
-import livekit.org.webrtc.MediaConstraints
-import livekit.org.webrtc.PeerConnectionFactory
-import livekit.org.webrtc.RtpSender
-import livekit.org.webrtc.RtpTransceiver
+import org.webrtc.MediaConstraints
+import org.webrtc.PeerConnectionFactory
+import org.webrtc.RtpSender
+import org.webrtc.RtpTransceiver
 import java.util.UUID
 import javax.inject.Named
 
@@ -53,7 +53,7 @@ class LocalAudioTrack
 @AssistedInject
 constructor(
     @Assisted name: String,
-    @Assisted mediaTrack: livekit.org.webrtc.AudioTrack,
+    @Assisted mediaTrack: org.webrtc.AudioTrack,
     @Assisted private val options: LocalAudioTrackOptions,
     private val audioProcessingController: AudioProcessingController,
     @Named(InjectionNames.DISPATCHER_DEFAULT)
@@ -143,7 +143,7 @@ constructor(
     interface Factory {
         fun create(
             name: String,
-            mediaTrack: livekit.org.webrtc.AudioTrack,
+            mediaTrack: org.webrtc.AudioTrack,
             options: LocalAudioTrackOptions,
         ): LocalAudioTrack
     }

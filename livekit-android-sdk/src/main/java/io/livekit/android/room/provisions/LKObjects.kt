@@ -16,7 +16,7 @@
 
 package io.livekit.android.room.provisions
 
-import livekit.org.webrtc.EglBase
+import org.webrtc.EglBase
 import javax.inject.Inject
 import javax.inject.Provider
 

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package livekit.org.webrtc
+package org.webrtc
 
 import io.livekit.android.test.mock.MockRtpReceiver
 import io.livekit.android.test.mock.MockRtpSender
-import livekit.org.webrtc.RtpTransceiver.RtpTransceiverDirection
+import org.webrtc.RtpTransceiver.RtpTransceiverDirection
 import org.mockito.Mockito
 
 object MockRtpTransceiver {

@@ -24,7 +24,7 @@ import io.livekit.android.util.toOkioByteString
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import livekit.LivekitModels
 import livekit.LivekitRtc
-import livekit.org.webrtc.PeerConnection
+import org.webrtc.PeerConnection
 import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Before

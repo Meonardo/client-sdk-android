@@ -16,7 +16,7 @@
 
 package io.livekit.android.room.util
 
-import livekit.org.webrtc.MediaConstraints
+import org.webrtc.MediaConstraints
 
 object MediaConstraintKeys {
     const val OFFER_TO_RECV_AUDIO = "OfferToReceiveAudio"

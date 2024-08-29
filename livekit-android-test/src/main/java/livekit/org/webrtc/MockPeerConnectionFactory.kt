@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package livekit.org.webrtc
+package org.webrtc
 
 import io.livekit.android.test.mock.MockAudioSource
 import io.livekit.android.test.mock.MockAudioStreamTrack

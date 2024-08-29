@@ -76,6 +76,8 @@ dependencies {
     implementation libs.coroutines.lib
     implementation libs.androidx.annotation
 
+    api files('../libs/libwebrtc.aar')
+
     api libs.androidx.camera.core
     api libs.androidx.camera.camera2
     api libs.androidx.camera.lifecycle

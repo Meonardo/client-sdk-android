@@ -17,8 +17,8 @@
 package io.livekit.android.room.track
 
 import io.livekit.android.webrtc.peerconnection.executeBlockingOnRTCThread
-import livekit.org.webrtc.VideoSink
-import livekit.org.webrtc.VideoTrack
+import org.webrtc.VideoSink
+import org.webrtc.VideoTrack
 
 abstract class VideoTrack(name: String, override val rtcTrack: VideoTrack) :
     Track(name, Kind.VIDEO, rtcTrack) {

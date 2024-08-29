@@ -16,7 +16,7 @@
 
 package io.livekit.android.test.mock
 
-import livekit.org.webrtc.MediaStreamTrack
+import org.webrtc.MediaStreamTrack
 
 class MockMediaStreamTrack(
     val id: String = "id",

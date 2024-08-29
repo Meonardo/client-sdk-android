@@ -16,9 +16,9 @@
 
 package io.livekit.android.test.mock
 
-import livekit.org.webrtc.AudioTrack
-import livekit.org.webrtc.MediaStream
-import livekit.org.webrtc.VideoTrack
+import org.webrtc.AudioTrack
+import org.webrtc.MediaStream
+import org.webrtc.VideoTrack
 
 fun createMediaStreamId(participantSid: String, trackSid: String) =
     "$participantSid|$trackSid"

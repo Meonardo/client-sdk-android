@@ -58,8 +58,8 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.Serializable
 import livekit.LivekitModels
 import livekit.LivekitRtc
-import livekit.org.webrtc.*
-import livekit.org.webrtc.audio.AudioDeviceModule
+import org.webrtc.*
+import org.webrtc.audio.AudioDeviceModule
 import java.net.URI
 import java.util.Date
 import javax.inject.Named

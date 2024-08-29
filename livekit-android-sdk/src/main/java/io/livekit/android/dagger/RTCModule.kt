@@ -35,18 +35,18 @@ import io.livekit.android.webrtc.CustomAudioProcessingFactory
 import io.livekit.android.webrtc.CustomVideoDecoderFactory
 import io.livekit.android.webrtc.CustomVideoEncoderFactory
 import io.livekit.android.webrtc.peerconnection.executeBlockingOnRTCThread
-import livekit.org.webrtc.AudioProcessingFactory
-import livekit.org.webrtc.EglBase
-import livekit.org.webrtc.Logging
-import livekit.org.webrtc.MediaStreamTrack
-import livekit.org.webrtc.PeerConnectionFactory
-import livekit.org.webrtc.RtpCapabilities
-import livekit.org.webrtc.SoftwareVideoDecoderFactory
-import livekit.org.webrtc.SoftwareVideoEncoderFactory
-import livekit.org.webrtc.VideoDecoderFactory
-import livekit.org.webrtc.VideoEncoderFactory
-import livekit.org.webrtc.audio.AudioDeviceModule
-import livekit.org.webrtc.audio.JavaAudioDeviceModule
+import org.webrtc.AudioProcessingFactory
+import org.webrtc.EglBase
+import org.webrtc.Logging
+import org.webrtc.MediaStreamTrack
+import org.webrtc.PeerConnectionFactory
+import org.webrtc.RtpCapabilities
+import org.webrtc.SoftwareVideoDecoderFactory
+import org.webrtc.SoftwareVideoEncoderFactory
+import org.webrtc.VideoDecoderFactory
+import org.webrtc.VideoEncoderFactory
+import org.webrtc.audio.AudioDeviceModule
+import org.webrtc.audio.JavaAudioDeviceModule
 import timber.log.Timber
 import javax.inject.Named
 import javax.inject.Singleton
@@ -88,7 +88,7 @@ internal object RTCModule {
         PeerConnectionFactory.initialize(
             PeerConnectionFactory.InitializationOptions
                 .builder(appContext)
-                .setNativeLibraryName("lkjingle_peerconnection_so")
+                .setNativeLibraryName("jingle_peerconnection_so")
                 .setInjectableLogger(
                     { s, severity, s2 ->
                         if (!LiveKit.enableWebRTCLogging) {

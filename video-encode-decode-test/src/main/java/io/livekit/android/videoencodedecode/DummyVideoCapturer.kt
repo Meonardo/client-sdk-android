@@ -19,7 +19,7 @@ package io.livekit.android.videoencodedecode
 import android.content.Context
 import android.os.SystemClock
 import androidx.annotation.ColorInt
-import livekit.org.webrtc.*
+import org.webrtc.*
 import java.nio.ByteBuffer
 import java.util.*
 import java.util.concurrent.TimeUnit

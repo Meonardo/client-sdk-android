@@ -17,7 +17,7 @@
 package io.livekit.android.test.util
 
 import com.google.protobuf.MessageLite
-import livekit.org.webrtc.DataChannel
+import org.webrtc.DataChannel
 import java.nio.ByteBuffer
 
 fun MessageLite.toDataChannelBuffer() =

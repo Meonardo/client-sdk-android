@@ -38,12 +38,12 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
-import livekit.org.webrtc.EglBase
-import livekit.org.webrtc.SurfaceTextureHelper
-import livekit.org.webrtc.VideoFrame
-import livekit.org.webrtc.VideoProcessor
-import livekit.org.webrtc.VideoSink
-import livekit.org.webrtc.YuvHelper
+import org.webrtc.EglBase
+import org.webrtc.SurfaceTextureHelper
+import org.webrtc.VideoFrame
+import org.webrtc.VideoProcessor
+import org.webrtc.VideoSink
+import org.webrtc.YuvHelper
 import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 

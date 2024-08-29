@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package livekit.org.webrtc
+package org.webrtc
 
 object NativeLibraryLoaderTestHelper {
     fun initialize() {

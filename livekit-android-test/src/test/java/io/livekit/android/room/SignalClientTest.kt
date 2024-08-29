@@ -32,7 +32,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.serialization.json.Json
 import livekit.LivekitRtc
-import livekit.org.webrtc.SessionDescription
+import org.webrtc.SessionDescription
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
 import okhttp3.Request

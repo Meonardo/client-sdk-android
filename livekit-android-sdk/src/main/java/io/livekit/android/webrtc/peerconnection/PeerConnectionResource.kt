@@ -16,10 +16,10 @@
 
 package io.livekit.android.webrtc.peerconnection
 
-import livekit.org.webrtc.PeerConnection
-import livekit.org.webrtc.RtpReceiver
-import livekit.org.webrtc.RtpSender
-import livekit.org.webrtc.RtpTransceiver
+import org.webrtc.PeerConnection
+import org.webrtc.RtpReceiver
+import org.webrtc.RtpSender
+import org.webrtc.RtpTransceiver
 
 /**
  * Objects obtained through [PeerConnection] are transient,

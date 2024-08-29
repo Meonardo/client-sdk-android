@@ -23,10 +23,10 @@ import android.util.Log
 import android.view.View
 import io.livekit.android.room.track.video.ViewVisibility
 import io.livekit.android.util.LKLog
-import livekit.org.webrtc.EglBase
-import livekit.org.webrtc.RendererCommon
-import livekit.org.webrtc.SurfaceViewRenderer
-import livekit.org.webrtc.VideoFrame
+import org.webrtc.EglBase
+import org.webrtc.RendererCommon
+import org.webrtc.SurfaceViewRenderer
+import org.webrtc.VideoFrame
 
 open class SurfaceViewRenderer : SurfaceViewRenderer, ViewVisibility.Notifier {
     constructor(context: Context) : super(context)

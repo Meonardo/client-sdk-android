@@ -54,8 +54,8 @@ import livekit.LivekitModels.AudioTrackFeature
 import livekit.LivekitRtc
 import livekit.LivekitRtc.SubscribedCodec
 import livekit.LivekitRtc.SubscribedQuality
-import livekit.org.webrtc.RtpParameters
-import livekit.org.webrtc.VideoSource
+import org.webrtc.RtpParameters
+import org.webrtc.VideoSource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull

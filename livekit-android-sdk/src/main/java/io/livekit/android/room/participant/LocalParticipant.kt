@@ -58,14 +58,14 @@ import livekit.LivekitModels
 import livekit.LivekitRtc
 import livekit.LivekitRtc.AddTrackRequest
 import livekit.LivekitRtc.SimulcastCodec
-import livekit.org.webrtc.EglBase
-import livekit.org.webrtc.PeerConnectionFactory
-import livekit.org.webrtc.RtpParameters
-import livekit.org.webrtc.RtpTransceiver
-import livekit.org.webrtc.RtpTransceiver.RtpTransceiverInit
-import livekit.org.webrtc.SurfaceTextureHelper
-import livekit.org.webrtc.VideoCapturer
-import livekit.org.webrtc.VideoProcessor
+import org.webrtc.EglBase
+import org.webrtc.PeerConnectionFactory
+import org.webrtc.RtpParameters
+import org.webrtc.RtpTransceiver
+import org.webrtc.RtpTransceiver.RtpTransceiverInit
+import org.webrtc.SurfaceTextureHelper
+import org.webrtc.VideoCapturer
+import org.webrtc.VideoProcessor
 import javax.inject.Named
 import kotlin.math.max
 

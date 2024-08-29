@@ -22,8 +22,8 @@ import android.view.TextureView
 import android.view.View
 import io.livekit.android.room.track.video.ViewVisibility
 import io.livekit.android.util.LKLog
-import livekit.org.webrtc.*
-import livekit.org.webrtc.RendererCommon.*
+import org.webrtc.*
+import org.webrtc.RendererCommon.*
 import java.util.concurrent.CountDownLatch
 
 /**

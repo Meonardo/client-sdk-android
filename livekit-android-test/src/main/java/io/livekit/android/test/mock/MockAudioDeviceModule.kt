@@ -16,7 +16,7 @@
 
 package io.livekit.android.test.mock
 
-import livekit.org.webrtc.audio.AudioDeviceModule
+import org.webrtc.audio.AudioDeviceModule
 
 class MockAudioDeviceModule : AudioDeviceModule {
     override fun getNativeAudioDeviceModulePointer(): Long {

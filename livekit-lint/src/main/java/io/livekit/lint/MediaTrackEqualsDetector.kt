@@ -82,7 +82,7 @@ class MediaTrackEqualsDetector : Detector(), SourceCodeScanner {
     }
 
     companion object {
-        private const val MEDIA_STREAM_TRACK = "livekit.org.webrtc.MediaStreamTrack"
+        private const val MEDIA_STREAM_TRACK = "org.webrtc.MediaStreamTrack"
 
         private const val DEFAULT_MSG =
             "Suspicious equality check: MediaStreamTracks should not be checked for equality. Check id() instead."

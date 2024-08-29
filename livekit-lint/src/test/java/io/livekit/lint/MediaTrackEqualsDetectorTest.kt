@@ -80,7 +80,7 @@ class MediaTrackEqualsDetectorTest {
                 java(
                     """
           package foo;
-          import livekit.org.webrtc.MediaStreamTrack;
+          import org.webrtc.MediaStreamTrack;
 
           class Example {
             public boolean foo() {
@@ -105,7 +105,7 @@ class MediaTrackEqualsDetectorTest {
                 java(
                     """
           package foo;
-          import livekit.org.webrtc.MediaStreamTrack;
+          import org.webrtc.MediaStreamTrack;
 
           class Example {
             public boolean foo() {
@@ -157,7 +157,7 @@ class MediaTrackEqualsDetectorTest {
                 kotlin(
                     """
           package foo
-          import livekit.org.webrtc.MediaStreamTrack
+          import org.webrtc.MediaStreamTrack
 
           class Example {
             fun foo() : Boolean {
@@ -182,7 +182,7 @@ class MediaTrackEqualsDetectorTest {
                 kotlin(
                     """
           package foo
-          import livekit.org.webrtc.MediaStreamTrack
+          import org.webrtc.MediaStreamTrack
 
           class Example {
             fun foo() : Boolean {
@@ -207,7 +207,7 @@ class MediaTrackEqualsDetectorTest {
                 kotlin(
                     """
           package foo
-          import livekit.org.webrtc.MediaStreamTrack
+          import org.webrtc.MediaStreamTrack
 
           class Example {
             fun foo() : Boolean {
@@ -232,7 +232,7 @@ class MediaTrackEqualsDetectorTest {
                 kotlin(
                     """
           package foo
-          import livekit.org.webrtc.MediaStreamTrack
+          import org.webrtc.MediaStreamTrack
 
           class Example {
             fun foo() : Boolean {
@@ -252,7 +252,7 @@ class MediaTrackEqualsDetectorTest {
 fun mediaStreamTrack(): TestFile {
     return java(
         """
-        package livekit.org.webrtc;
+        package org.webrtc;
 
         class MediaStreamTrack {
             int getId(){

@@ -17,9 +17,9 @@
 package io.livekit.android.room.track
 
 import io.livekit.android.webrtc.peerconnection.executeBlockingOnRTCThread
-import livekit.org.webrtc.AudioTrack
-import livekit.org.webrtc.AudioTrackSink
-import livekit.org.webrtc.RtpReceiver
+import org.webrtc.AudioTrack
+import org.webrtc.AudioTrackSink
+import org.webrtc.RtpReceiver
 
 /**
  * A representation of a remote audio track.

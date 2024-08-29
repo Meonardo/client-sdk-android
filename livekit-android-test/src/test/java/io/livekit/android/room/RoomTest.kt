@@ -47,7 +47,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import livekit.LivekitRtc.JoinResponse
-import livekit.org.webrtc.EglBase
+import org.webrtc.EglBase
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
