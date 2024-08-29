@@ -19,6 +19,7 @@ package io.livekit.android.room.participant
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.media.AudioPlaybackCaptureConfiguration
 import androidx.annotation.VisibleForTesting
 import com.google.protobuf.ByteString
 import dagger.assisted.Assisted
@@ -39,6 +40,7 @@ import io.livekit.android.room.track.LocalScreencastVideoTrack
 import io.livekit.android.room.track.LocalTrackPublication
 import io.livekit.android.room.track.LocalVideoTrack
 import io.livekit.android.room.track.LocalVideoTrackOptions
+import io.livekit.android.room.track.SystemAudioCapturer
 import io.livekit.android.room.track.Track
 import io.livekit.android.room.track.TrackException
 import io.livekit.android.room.track.TrackPublication
@@ -117,6 +119,28 @@ internal constructor(
         options: LocalAudioTrackOptions = audioTrackCaptureDefaults,
     ): LocalAudioTrack {
         return LocalAudioTrack.createTrack(context, peerConnectionFactory, options, audioTrackFactory, name)
+    }
+
+    /**
+     * Creates an audio track, recording audio through the system audio
+     * capturer with config [captureConfiguration].
+     * @exception SecurityException will be thrown if [Manifest.permission.RECORD_AUDIO] permission is missing.
+     */
+    fun createAudioTrack(
+        name: String = "screenAudio",
+        options: LocalAudioTrackOptions = audioTrackCaptureDefaults,
+        captureConfiguration: AudioPlaybackCaptureConfiguration
+    ): LocalAudioTrack {
+        val source = peerConnectionFactory.createAudioBufferSource()
+        val capturer = SystemAudioCapturer(context, captureConfiguration, source)
+        return LocalAudioTrack.createBufferSourceTrack(
+            context,
+            peerConnectionFactory,
+            capturer,
+            options,
+            audioTrackFactory,
+            name,
+        )
     }
 
     /**

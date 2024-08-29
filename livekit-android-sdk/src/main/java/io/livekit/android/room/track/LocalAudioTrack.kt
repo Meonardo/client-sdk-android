@@ -41,6 +41,7 @@ import org.webrtc.MediaConstraints
 import org.webrtc.PeerConnectionFactory
 import org.webrtc.RtpSender
 import org.webrtc.RtpTransceiver
+import org.webrtc.AudioBufferSource
 import java.util.UUID
 import javax.inject.Named
 
@@ -55,10 +56,12 @@ constructor(
     @Assisted name: String,
     @Assisted mediaTrack: org.webrtc.AudioTrack,
     @Assisted private val options: LocalAudioTrackOptions,
+    @Assisted private val capturer: SystemAudioCapturer? = null,
     private val audioProcessingController: AudioProcessingController,
     @Named(InjectionNames.DISPATCHER_DEFAULT)
     private val dispatcher: CoroutineDispatcher,
 ) : AudioTrack(name, mediaTrack) {
+
     /**
      * To only be used for flow delegate scoping, and should not be cancelled.
      **/
@@ -107,6 +110,14 @@ constructor(
         return features
     }
 
+    override fun start() {
+        capturer?.start()
+    }
+
+    override fun stop() {
+        capturer?.stop()
+    }
+
     companion object {
         internal fun createTrack(
             context: Context,
@@ -137,6 +148,24 @@ constructor(
 
             return audioTrackFactory.create(name = name, mediaTrack = rtcAudioTrack, options = options)
         }
+
+        internal fun createBufferSourceTrack(
+            context: Context,
+            factory: PeerConnectionFactory,
+            capturer: SystemAudioCapturer,
+            options: LocalAudioTrackOptions = LocalAudioTrackOptions(),
+            audioTrackFactory: Factory,
+            name: String = "",
+        ): LocalAudioTrack {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) !=
+                PackageManager.PERMISSION_GRANTED
+            ) {
+                throw SecurityException("Record audio permissions are required to create an audio track.")
+            }
+
+            val rtcAudioTrack = factory.createAudioTrackFromBufferSource(UUID.randomUUID().toString(), capturer.source)
+            return audioTrackFactory.create(name = name, mediaTrack = rtcAudioTrack, options = options, capturer = capturer)
+        }
     }
 
     @AssistedFactory
@@ -145,6 +174,7 @@ constructor(
             name: String,
             mediaTrack: org.webrtc.AudioTrack,
             options: LocalAudioTrackOptions,
+            capturer: SystemAudioCapturer? = null,
         ): LocalAudioTrack
     }
 }

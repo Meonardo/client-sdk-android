@@ -89,7 +89,12 @@ class CallActivity : AppCompatActivity() {
             Handler().postDelayed({
                 val mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, data)
                 if (mediaProjection != null) {
-                    requestSystemAudio(mediaProjection)
+                    val config = AudioPlaybackCaptureConfiguration.Builder(mediaProjection)
+                        .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
+                        .addMatchingUsage(AudioAttributes.USAGE_GAME)
+                        .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
+                        .build()
+                    viewModel.startSystemAudioCapture(config)
                 }
             }, 1000)
 
@@ -241,56 +246,6 @@ class CallActivity : AppCompatActivity() {
     private fun requestMediaProjection() {
         val intent = mediaProjectionManager.createScreenCaptureIntent()
         screenCaptureIntentLauncher.launch(intent)
-    }
-
-    private fun requestSystemAudio(projection: MediaProjection) {
-        val config = AudioPlaybackCaptureConfiguration.Builder(projection)
-            .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
-            .addMatchingUsage(AudioAttributes.USAGE_GAME)
-            .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
-            .build()
-
-        val sampleRate = 32000
-        val bufferSize = AudioRecord.getMinBufferSize(sampleRate,
-            AudioFormat.CHANNEL_IN_STEREO,
-            AudioFormat.ENCODING_PCM_16BIT)
-
-        // check if we have permission to record audio
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            return
-        }
-
-        // create audio record instance
-        val audioRecord = AudioRecord.Builder()
-            .setAudioFormat(AudioFormat.Builder()
-                .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
-                .setSampleRate(sampleRate)
-                .setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
-                .build())
-            .setAudioPlaybackCaptureConfig(config)
-            .setBufferSizeInBytes(bufferSize)
-            .build()
-
-        // start recording
-        audioRecord.startRecording()
-
-        // start a thread to read audio data & save to sdcard/Download
-        val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-            "audio.pcm")
-        if (file.exists()) {
-            file.delete()
-            file.createNewFile()
-        }
-        Thread {
-            while (true) {
-                val buffer = ByteArray(bufferSize)
-                audioRecord.read(buffer, 0, bufferSize)
-
-                // save to file
-                file.appendBytes(buffer)
-            }
-        }.start()
     }
 
     override fun onDestroy() {

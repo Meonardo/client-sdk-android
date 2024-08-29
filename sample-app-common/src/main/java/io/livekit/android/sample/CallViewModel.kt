@@ -19,6 +19,7 @@ package io.livekit.android.sample
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Intent
+import android.media.AudioPlaybackCaptureConfiguration
 import android.media.projection.MediaProjectionManager
 import android.os.Build
 import androidx.annotation.OptIn
@@ -44,6 +45,7 @@ import io.livekit.android.room.participant.Participant
 import io.livekit.android.room.participant.RemoteParticipant
 import io.livekit.android.room.participant.VideoTrackPublishDefaults
 import io.livekit.android.room.track.CameraPosition
+import io.livekit.android.room.track.LocalAudioTrack
 import io.livekit.android.room.track.LocalScreencastVideoTrack
 import io.livekit.android.room.track.LocalVideoTrack
 import io.livekit.android.room.track.Track
@@ -132,6 +134,8 @@ class CallViewModel(
     val activeSpeakers = room::activeSpeakers.flow
 
     private var localScreencastTrack: LocalScreencastVideoTrack? = null
+
+    private var localSystemAudioTrack: LocalAudioTrack? = null
 
     // Controls
     private val mutableMicEnabled = MutableLiveData(true)
@@ -333,6 +337,24 @@ class CallViewModel(
                 localScreencastVideoTrack.stop()
                 room.localParticipant.unpublishTrack(localScreencastVideoTrack)
                 mutableScreencastEnabled.postValue(localScreencastTrack?.enabled ?: false)
+            }
+        }
+    }
+
+    fun startSystemAudioCapture(configuration: AudioPlaybackCaptureConfiguration) {
+        val localParticipant = room.localParticipant
+        viewModelScope.launch {
+            val track = localParticipant.createAudioTrack(captureConfiguration = configuration)
+            localParticipant.publishAudioTrack(track)
+            this@CallViewModel.localSystemAudioTrack = track
+        }
+    }
+
+    fun stopSystemAudioCapture() {
+        viewModelScope.launch {
+            localSystemAudioTrack?.let { localAudioTrack ->
+                localAudioTrack.stop()
+                room.localParticipant.unpublishTrack(localAudioTrack)
             }
         }
     }
