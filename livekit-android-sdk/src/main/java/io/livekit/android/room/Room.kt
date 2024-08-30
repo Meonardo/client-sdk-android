@@ -60,6 +60,7 @@ import livekit.LivekitModels
 import livekit.LivekitRtc
 import org.webrtc.*
 import org.webrtc.audio.AudioDeviceModule
+import org.webrtc.audio.JavaAudioDeviceModule
 import java.net.URI
 import java.util.Date
 import javax.inject.Named
@@ -939,6 +940,18 @@ constructor(
      */
     fun setMicrophoneMute(muted: Boolean) {
         audioDeviceModule.setMicrophoneMute(muted)
+    }
+
+    fun pauseMic() {
+        // hack for system sounds sharing
+        val jad = audioDeviceModule as JavaAudioDeviceModule
+        jad.pasuseRecording()
+    }
+
+    fun resumeMic() {
+        // hack for system sounds sharing
+        val jad = audioDeviceModule as JavaAudioDeviceModule
+        jad.resumeRecording()
     }
 
     // ------------------------------------- NetworkCallback -------------------------------------//

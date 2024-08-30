@@ -44,6 +44,7 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xwray.groupie.GroupieAdapter
+import io.livekit.android.LiveKit
 import io.livekit.android.sample.common.R
 import io.livekit.android.sample.databinding.CallActivityBinding
 import io.livekit.android.sample.dialog.showAudioProcessorSwitchDialog
@@ -223,6 +224,8 @@ class CallActivity : AppCompatActivity() {
         binding.debugMenu.setOnClickListener {
             showDebugMenuDialog(viewModel)
         }
+
+//        LiveKit.enableWebRTCLogging = true
     }
 
     override fun onResume() {

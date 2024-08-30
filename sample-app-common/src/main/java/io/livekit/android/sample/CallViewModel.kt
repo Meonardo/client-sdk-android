@@ -36,10 +36,13 @@ import io.livekit.android.LiveKitOverrides
 import io.livekit.android.RoomOptions
 import io.livekit.android.audio.AudioProcessorOptions
 import io.livekit.android.audio.AudioSwitchHandler
+import io.livekit.android.dagger.RTCModule_AudioModuleFactory
 import io.livekit.android.e2ee.E2EEOptions
 import io.livekit.android.events.RoomEvent
 import io.livekit.android.events.collect
+import io.livekit.android.room.RTCEngine
 import io.livekit.android.room.Room
+import io.livekit.android.room.participant.AudioTrackPublishOptions
 import io.livekit.android.room.participant.LocalParticipant
 import io.livekit.android.room.participant.Participant
 import io.livekit.android.room.participant.RemoteParticipant
@@ -66,6 +69,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import livekit.LivekitModels
 import org.webrtc.CameraXHelper
 
 @OptIn(ExperimentalCamera2Interop::class)
@@ -268,11 +272,11 @@ class CallViewModel(
 
             // Create and publish audio/video tracks
             val localParticipant = room.localParticipant
-            localParticipant.setMicrophoneEnabled(true)
+            localParticipant.setMicrophoneEnabled(false)
             mutableMicEnabled.postValue(localParticipant.isMicrophoneEnabled())
-
-            localParticipant.setCameraEnabled(true)
-            mutableCameraEnabled.postValue(localParticipant.isCameraEnabled())
+//
+//            localParticipant.setCameraEnabled(true)
+//            mutableCameraEnabled.postValue(localParticipant.isCameraEnabled())
 
             // Update the speaker
             handlePrimarySpeaker(emptyList(), emptyList(), room)
@@ -345,8 +349,12 @@ class CallViewModel(
         val localParticipant = room.localParticipant
         viewModelScope.launch {
             val track = localParticipant.createAudioTrack(captureConfiguration = configuration)
-            localParticipant.publishAudioTrack(track)
+            localParticipant.publishAudioTrack(track, options = AudioTrackPublishOptions(
+                name = "System Audio",
+                source = Track.Source.SCREEN_SHARE_AUDIO
+            ))
             this@CallViewModel.localSystemAudioTrack = track
+            track.start()
         }
     }
 
@@ -378,6 +386,11 @@ class CallViewModel(
     fun setMicEnabled(enabled: Boolean) {
         viewModelScope.launch {
             room.localParticipant.setMicrophoneEnabled(enabled)
+            if (enabled) {
+                room.resumeMic()
+            } else {
+                room.pauseMic()
+            }
             mutableMicEnabled.postValue(enabled)
         }
     }

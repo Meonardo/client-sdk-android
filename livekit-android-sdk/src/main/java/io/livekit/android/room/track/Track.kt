@@ -124,6 +124,7 @@ abstract class Track(
         CAMERA,
         MICROPHONE,
         SCREEN_SHARE,
+        SCREEN_SHARE_AUDIO,
         UNKNOWN,
         ;
 
@@ -132,6 +133,7 @@ abstract class Track(
                 CAMERA -> LivekitModels.TrackSource.CAMERA
                 MICROPHONE -> LivekitModels.TrackSource.MICROPHONE
                 SCREEN_SHARE -> LivekitModels.TrackSource.SCREEN_SHARE
+                SCREEN_SHARE_AUDIO -> LivekitModels.TrackSource.SCREEN_SHARE_AUDIO
                 UNKNOWN -> LivekitModels.TrackSource.UNKNOWN
             }
         }
@@ -142,6 +144,7 @@ abstract class Track(
                     LivekitModels.TrackSource.CAMERA -> CAMERA
                     LivekitModels.TrackSource.MICROPHONE -> MICROPHONE
                     LivekitModels.TrackSource.SCREEN_SHARE -> SCREEN_SHARE
+                    LivekitModels.TrackSource.SCREEN_SHARE_AUDIO -> SCREEN_SHARE_AUDIO
                     else -> UNKNOWN
                 }
             }
