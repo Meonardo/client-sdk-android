@@ -348,6 +348,8 @@ class CallViewModel(
     fun startSystemAudioCapture(configuration: AudioPlaybackCaptureConfiguration) {
         val localParticipant = room.localParticipant
         viewModelScope.launch {
+            // HACK: Pause the microphone to avoid crash
+            room.pauseMic()
             val track = localParticipant.createAudioTrack(captureConfiguration = configuration)
             localParticipant.publishAudioTrack(track, options = AudioTrackPublishOptions(
                 name = "System Audio",
@@ -363,6 +365,8 @@ class CallViewModel(
             localSystemAudioTrack?.let { localAudioTrack ->
                 localAudioTrack.stop()
                 room.localParticipant.unpublishTrack(localAudioTrack)
+                // HACK: Resume the microphone
+                room.resumeMic()
             }
         }
     }
