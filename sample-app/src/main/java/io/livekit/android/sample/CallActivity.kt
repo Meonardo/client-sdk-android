@@ -16,35 +16,24 @@
 
 package io.livekit.android.sample
 
-import android.Manifest
 import android.app.Activity
-import android.content.Intent
-import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.media.AudioAttributes
-import android.media.AudioFormat
-import android.media.AudioManager
 import android.media.AudioPlaybackCaptureConfiguration
-import android.media.AudioRecord
-import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.os.Handler
 import android.os.Parcelable
-import android.util.Log
+import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xwray.groupie.GroupieAdapter
-import io.livekit.android.LiveKit
 import io.livekit.android.sample.common.R
 import io.livekit.android.sample.databinding.CallActivityBinding
 import io.livekit.android.sample.dialog.showAudioProcessorSwitchDialog
@@ -53,7 +42,7 @@ import io.livekit.android.sample.dialog.showSelectAudioDeviceDialog
 import io.livekit.android.sample.model.StressTest
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.parcelize.Parcelize
-import java.io.File
+
 
 class CallActivity : AppCompatActivity() {
 
@@ -87,17 +76,27 @@ class CallActivity : AppCompatActivity() {
                 return@registerForActivityResult
             }
 
-            Handler().postDelayed({
-                val mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, data)
-                if (mediaProjection != null) {
-                    val config = AudioPlaybackCaptureConfiguration.Builder(mediaProjection)
-                        .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
-                        .addMatchingUsage(AudioAttributes.USAGE_GAME)
-                        .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
-                        .build()
-                    viewModel.startSystemAudioCapture(config)
-                }
-            }, 1000)
+            Handler().postDelayed(
+                {
+                    val mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, data)
+                    if (mediaProjection != null) {
+                        val config = AudioPlaybackCaptureConfiguration.Builder(mediaProjection)
+                            .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
+                            .addMatchingUsage(AudioAttributes.USAGE_GAME)
+                            .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
+                            .build()
+                        viewModel.startSystemAudioCapture(config)
+                    }
+                },
+                1000,
+            )
+
+            Handler().postDelayed(
+                {
+                    updateScreenCaptureSize()
+                },
+                5000,
+            )
 
             viewModel.startScreenCapture(data)
         }
@@ -269,4 +268,12 @@ class CallActivity : AppCompatActivity() {
         val e2eeOn: Boolean,
         val stressTest: StressTest,
     ) : Parcelable
+
+    fun updateScreenCaptureSize() {
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val width = displayMetrics.widthPixels
+        val height = displayMetrics.heightPixels
+        viewModel.updateScreenShareSize(width, height)
+    }
 }

@@ -345,6 +345,12 @@ class CallViewModel(
         }
     }
 
+    fun updateScreenShareSize(width: Int, height: Int) {
+        viewModelScope.launch {
+            localScreencastTrack?.updateCaptureSize(width, height)
+        }
+    }
+
     fun startSystemAudioCapture(configuration: AudioPlaybackCaptureConfiguration) {
         val localParticipant = room.localParticipant
         viewModelScope.launch {

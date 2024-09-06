@@ -97,6 +97,10 @@ constructor(
         serviceConnection.stop()
     }
 
+    fun updateCaptureSize(width: Int, height: Int) {
+        capturer.changeCaptureFormat(width, height, options.captureParams.maxFps)
+    }
+
     @AssistedFactory
     interface Factory {
         fun create(
